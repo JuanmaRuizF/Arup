@@ -1,23 +1,83 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import Navbar from "./Navbar";
+import Table from "./TableComponent";
+import FilterComponent from "./FilterComponent";
+import ElementDetails from "./ElementDetails";
+import { RiDownloadLine } from "react-icons/ri";
+import Data from "./Data/mockData.json";
 
 function App() {
+  const [clickedRowNumber, setClickedRowNumber] = useState(null);
+  const [clickedElement, setClickedElement] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    //Sort all the data by date (latest first)
+    Data = Data.sort(function (a, b) {
+      if (a.regDate > b.regDate) {
+        return -1;
+      }
+      if (a.regDate < b.regDate) {
+        return 1;
+      }
+      return 0;
+    });
+    setLoaded(true);
+  }, [Data]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {loaded ? (
+        <div className="App">
+          <Navbar />
+          <div className="AppContainer">
+            <div className="subnav-container">
+              <div className="request-info">Request for information</div>
+              <div className="buttons-right">
+                <div className="download-icon">
+                  <RiDownloadLine></RiDownloadLine>
+                </div>
+                <button className="add-request-button">Add request</button>
+              </div>
+            </div>
+
+            <div className="appComponents">
+              <div className="firstPart">
+                <FilterComponent Data={Data}></FilterComponent>
+              </div>
+              {clickedRowNumber === null ? (
+                <div className="largeTable">
+                  <Table
+                    clickedRowNumber={clickedRowNumber}
+                    setClickedRowNumber={setClickedRowNumber}
+                    setClickedElement={setClickedElement}
+                    Data={Data}
+                  ></Table>
+                </div>
+              ) : (
+                <>
+                  <div className="smallTable">
+                    <Table
+                      clickedRowNumber={clickedRowNumber}
+                      setClickedRowNumber={setClickedRowNumber}
+                      setClickedElement={setClickedElement}
+                      Data={Data}
+                    ></Table>
+                  </div>
+                  <div className="elementDetails">
+                    <ElementDetails
+                      clickedElement={clickedElement}
+                      setClickedElement={setClickedElement}
+                      setClickedRowNumber={setClickedRowNumber}
+                    ></ElementDetails>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
