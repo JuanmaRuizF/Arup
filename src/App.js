@@ -5,16 +5,19 @@ import Table from "./TableComponent";
 import FilterComponent from "./FilterComponent";
 import ElementDetails from "./ElementDetails";
 import { RiDownloadLine } from "react-icons/ri";
-import Data from "./Data/mockData.json";
+import DataValues from "./Data/mockData.json";
 
 function App() {
   const [clickedRowNumber, setClickedRowNumber] = useState(null);
   const [clickedElement, setClickedElement] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
+  const [Data, setData] = useState(DataValues);
+  const [immutableData, setImmutableData] = useState(DataValues);
+
   useEffect(() => {
     //Sort all the data by date (latest first)
-    Data = Data.sort(function (a, b) {
+    let sortedData = Data.sort(function (a, b) {
       if (a.regDate > b.regDate) {
         return -1;
       }
@@ -23,6 +26,9 @@ function App() {
       }
       return 0;
     });
+
+    setData(sortedData);
+    setImmutableData(sortedData);
     setLoaded(true);
   }, [Data]);
 
@@ -44,7 +50,11 @@ function App() {
 
             <div className="appComponents">
               <div className="firstPart">
-                <FilterComponent Data={Data}></FilterComponent>
+                <FilterComponent
+                  Data={Data}
+                  immutableData={immutableData}
+                  setData={setData}
+                ></FilterComponent>
               </div>
               {clickedRowNumber === null ? (
                 <div className="largeTable">
