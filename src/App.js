@@ -13,7 +13,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   const [Data, setData] = useState(DataValues);
-  const [immutableData, setImmutableData] = useState(DataValues);
+  // const [immutableData, setImmutableData] = useState(DataValues);
 
   useEffect(() => {
     //Sort all the data by date (latest first)
@@ -28,7 +28,7 @@ function App() {
     });
 
     setData(sortedData);
-    setImmutableData(sortedData);
+    // setImmutableData(sortedData);
     setLoaded(true);
   }, [Data]);
 
@@ -52,7 +52,7 @@ function App() {
               <div className="firstPart">
                 <FilterComponent
                   Data={Data}
-                  immutableData={immutableData}
+                  immutableData={DataValues}
                   setData={setData}
                 ></FilterComponent>
               </div>

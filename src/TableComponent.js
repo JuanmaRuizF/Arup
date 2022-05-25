@@ -12,53 +12,56 @@ export default function TableComponent(props) {
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Num</th>
-          <th>Discipline</th>
-          <th>Reg Date</th>
-          <th>Sent to</th>
-          <th>Subject</th>
-          <th>Status</th>
-          <th>Critical</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.Data.map((element, key) => (
-          <tr key={key} onClick={() => clickedRow(key, element)}>
-            {props.clickedRowNumber === key ? (
-              <td className="selectedRow">{element.num}</td>
-            ) : (
-              <td>{element.num}</td>
-            )}
-            <td>{element.discipline}</td>
-            <td>{element.regDate}</td>
-            <td>{element.sentTo.name}</td>
-            <td>{element.subject}</td>
-
-            {element.status === "answered" ? (
-              <td>
-                <GiConfirmed className="answeredIcon"></GiConfirmed>
-              </td>
-            ) : element.status === "closed" ? (
-              <td>
-                <GiConfirmed className="closedIcon"></GiConfirmed>
-              </td>
-            ) : (
-              <td></td>
-            )}
-
-            {element.critical ? (
-              <td>
-                <IoWarning className="warningIcon"></IoWarning>
-              </td>
-            ) : (
-              <td></td>
-            )}
+    <>
+      <h4>Total number of elements: {props.Data.length}</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Num</th>
+            <th>Discipline</th>
+            <th>Reg Date</th>
+            <th>Sent to</th>
+            <th>Subject</th>
+            <th>Status</th>
+            <th>Critical</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {props.Data.map((element, key) => (
+            <tr key={key} onClick={() => clickedRow(key, element)}>
+              {props.clickedRowNumber === key ? (
+                <td className="selectedRow">{element.num}</td>
+              ) : (
+                <td>{element.num}</td>
+              )}
+              <td>{element.discipline}</td>
+              <td>{element.regDate}</td>
+              <td>{element.sentTo.name}</td>
+              <td>{element.subject}</td>
+
+              {element.status === "answered" ? (
+                <td>
+                  <GiConfirmed className="answeredIcon"></GiConfirmed>
+                </td>
+              ) : element.status === "closed" ? (
+                <td>
+                  <GiConfirmed className="closedIcon"></GiConfirmed>
+                </td>
+              ) : (
+                <td></td>
+              )}
+
+              {element.critical ? (
+                <td>
+                  <IoWarning className="warningIcon"></IoWarning>
+                </td>
+              ) : (
+                <td></td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

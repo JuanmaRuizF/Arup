@@ -8,13 +8,28 @@ export default function FilterComponent(props) {
   const [filteredElements, setFilteredElements] = useState([]);
 
   const countRepeatedElements = (object, valueToCheck) => {
-    props.Data.map((element) => {
+    props.immutableData.map((element) => {
       if (object[element[valueToCheck]] === undefined) {
-        object[element[valueToCheck]] = 1;
-      } else {
+        object[element[valueToCheck]] = 0;
+      }
+    });
+    // console.log(props.Data);
+
+    props.Data.map((element) => {
+      if (object[element[valueToCheck]] !== undefined) {
         object[element[valueToCheck]] += 1;
       }
     });
+
+    // props.Data.map((element) => {
+    //   if (object[element[valueToCheck]] === undefined) {
+    //     object[element[valueToCheck]] = 1;
+    //   } else {
+    //     object[element[valueToCheck]] += 1;
+    //   }
+    // });
+
+    // console.log(object);
     return object;
   };
 
@@ -48,6 +63,7 @@ export default function FilterComponent(props) {
           {Object.keys(values.discipline).map((element, key) => {
             return (
               <FilterElement
+                Data={props.Data}
                 element={element}
                 key={key}
                 values={values.discipline}
@@ -65,6 +81,7 @@ export default function FilterComponent(props) {
           {Object.keys(values.status).map((element, key) => {
             return (
               <FilterElement
+                Data={props.Data}
                 element={element}
                 key={key}
                 values={values.status}
@@ -82,6 +99,7 @@ export default function FilterComponent(props) {
           {Object.keys(values.critical).map((element, key) => {
             return (
               <FilterElement
+                Data={props.Data}
                 element={element}
                 key={key}
                 values={values.critical}
@@ -99,6 +117,7 @@ export default function FilterComponent(props) {
           {Object.keys(values.regDate).map((element, key) => {
             return (
               <FilterElement
+                Data={props.Data}
                 element={element}
                 key={key}
                 values={values.regDate}
