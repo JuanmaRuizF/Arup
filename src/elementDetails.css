@@ -1,0 +1,66 @@
+.detailsContainer {
+    display: flex;
+    width: 80%;
+    background-color: rgb(255, 255, 255);
+    padding: 5%;
+    flex-wrap: wrap;
+    margin-left: 5%;
+}
+
+.environmentalTitle {
+    width: 50%;
+    color: rgb(255, 0, 0)
+}
+
+.closeButton {
+    width: 50%;
+    text-align: right;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.subjectElement {
+    width: 70%;
+    font-size: 1.3em;
+}
+
+.sentMsg {
+    width: 100%;
+    color: rgb(124, 124, 124)
+}
+
+.detailsHR {
+    margin-top: 3%;
+    width: 100%;
+    color: #0000;
+}
+
+.requestTitle {
+    width: 100%;
+}
+
+.requestName {
+    width: 65%;
+    color: rgb(124, 124, 124)
+}
+
+.date {
+    width: 35%;
+    color: rgb(124, 124, 124)
+}
+
+.detailsMessage {
+    text-align: justify;
+    padding-top: 3%
+}
+
+.answer-request-button {
+    height: 2.5em;
+    background-color: rgb(235, 27, 40);
+    color: #fff;
+    width: 40%;
+    border-radius: 50px;
+    border: none;
+    margin-top: 3%;
+    margin-left: auto;
+}
