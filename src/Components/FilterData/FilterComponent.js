@@ -1,39 +1,32 @@
 import React, { useEffect, useState } from "react";
 import FilterElement from "./FilterElement";
-import "./Filter.css";
+import "../../Styles/Filter.css";
 
 export default function FilterComponent(props) {
   const [values, setValues] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [filteredElements, setFilteredElements] = useState([]);
+  const [filteredElements, setFilteredElements] = useState([]); //array used to filter the data with the unwanted fields
 
   const countRepeatedElements = (object, valueToCheck) => {
     props.immutableData.map((element) => {
+      //mapping through the immutable data to obtain all possible elements for a filter type
       if (object[element[valueToCheck]] === undefined) {
         object[element[valueToCheck]] = 0;
       }
     });
-    // console.log(props.Data);
 
     props.Data.map((element) => {
+      //now mapping through the current data to check the number of each of the elements
       if (object[element[valueToCheck]] !== undefined) {
         object[element[valueToCheck]] += 1;
       }
     });
 
-    // props.Data.map((element) => {
-    //   if (object[element[valueToCheck]] === undefined) {
-    //     object[element[valueToCheck]] = 1;
-    //   } else {
-    //     object[element[valueToCheck]] += 1;
-    //   }
-    // });
-
-    // console.log(object);
     return object;
   };
 
   useEffect(() => {
+    //count the number of elements for each of the filter types and set it to the values hook to display the information
     let tempValues = { discipline: {}, status: {}, critical: {}, regDate: {} };
 
     tempValues.discipline = countRepeatedElements(
@@ -49,34 +42,33 @@ export default function FilterComponent(props) {
 
     setValues(tempValues);
     setLoaded(true);
-  }, [props.Data]);
-
-  // console.log(filteredElements);
+  }, [props.Data]); // loads every time the mapped table data has been altered -> have to do the recount
 
   return (
     <div>
       {loaded ? (
         <>
           <div>Filters</div>
-          <hr className="filterBar"></hr>
+          <hr className="filter-row"></hr>
           <h4>Disciplines</h4>
           {Object.keys(values.discipline).map((element, key) => {
+            //mapping through each of the filter elements to display them
             return (
               <FilterElement
-                Data={props.Data}
-                element={element}
+                Data={props.Data} // actual displayed table data
+                element={element} //current element
                 key={key}
-                values={values.discipline}
-                immutableData={props.immutableData}
-                setData={props.setData}
-                filteredElements={filteredElements}
-                setFilteredElements={setFilteredElements}
-                type="discipline"
+                values={values.discipline} //discipline object values
+                immutableData={props.immutableData} //immutable data to make the filtering
+                setData={props.setData} // setData method to update the table
+                filteredElements={filteredElements} //array of filtered/unwanted elements
+                setFilteredElements={setFilteredElements} //method to modify the filtered array
+                type="discipline" //type of element
               ></FilterElement>
             );
           })}
 
-          <hr className="filterBar"></hr>
+          <hr className="filter-row"></hr>
           <h4>Status</h4>
           {Object.keys(values.status).map((element, key) => {
             return (
@@ -94,7 +86,7 @@ export default function FilterComponent(props) {
             );
           })}
 
-          <hr className="filterBar"></hr>
+          <hr className="filter-row"></hr>
           <h4>Criticality</h4>
           {Object.keys(values.critical).map((element, key) => {
             return (
@@ -112,7 +104,7 @@ export default function FilterComponent(props) {
             );
           })}
 
-          <hr className="filterBar"></hr>
+          <hr className="filter-row"></hr>
           <h4>Registration Date</h4>
           {Object.keys(values.regDate).map((element, key) => {
             return (

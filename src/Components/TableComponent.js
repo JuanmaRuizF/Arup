@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { IoWarning } from "react-icons/io5";
 import { GiConfirmed } from "react-icons/gi";
-import Data from "./Data/mockData.json";
+import "../Styles/TableComponent.css";
 
 export default function TableComponent(props) {
-  // const [clickedRowNumber, setClickedRowNumber] = useState(null);
-
   const clickedRow = (row, element) => {
+    //when a row has been clicked, set these values to rerender the App component with the changes selected
     props.setClickedRowNumber(row);
     props.setClickedElement(element);
   };
@@ -27,10 +26,11 @@ export default function TableComponent(props) {
           </tr>
         </thead>
         <tbody>
+          {/* mapping through the data to display the fields in the table */}
           {props.Data.map((element, key) => (
             <tr key={key} onClick={() => clickedRow(key, element)}>
               {props.clickedRowNumber === key ? (
-                <td className="selectedRow">{element.num}</td>
+                <td className="selected-row">{element.num}</td>
               ) : (
                 <td>{element.num}</td>
               )}
@@ -41,11 +41,11 @@ export default function TableComponent(props) {
 
               {element.status === "answered" ? (
                 <td>
-                  <GiConfirmed className="answeredIcon"></GiConfirmed>
+                  <GiConfirmed className="answered-icon"></GiConfirmed>
                 </td>
               ) : element.status === "closed" ? (
                 <td>
-                  <GiConfirmed className="closedIcon"></GiConfirmed>
+                  <GiConfirmed className="closed-icon"></GiConfirmed>
                 </td>
               ) : (
                 <td></td>
@@ -53,7 +53,7 @@ export default function TableComponent(props) {
 
               {element.critical ? (
                 <td>
-                  <IoWarning className="warningIcon"></IoWarning>
+                  <IoWarning className="warning-icon"></IoWarning>
                 </td>
               ) : (
                 <td></td>
