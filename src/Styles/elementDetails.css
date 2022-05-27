@@ -1,4 +1,4 @@
-.detailsContainer {
+.details-container {
     display: flex;
     width: 80%;
     background-color: rgb(255, 255, 255);
@@ -7,54 +7,68 @@
     margin-left: 5%;
 }
 
-.environmentalTitle {
+.details-container__environmental-title {
     width: 50%;
     color: rgb(255, 0, 0)
 }
 
-.closeButton {
+.details-container__close-button {
     width: 50%;
     text-align: right;
     font-size: 1.2em;
     cursor: pointer;
 }
 
-.subjectElement {
+.details-container__subject-element {
     width: 70%;
     font-size: 1.3em;
 }
 
-.sentMsg {
+.details-container__sent-msg {
     width: 100%;
     color: rgb(124, 124, 124)
 }
 
-.detailsHR {
+.details-container__answered-icon {
+    font-size: 1.7em;
+}
+
+.details-container__warning-icon {
+    font-size: 1.7em;
+    color: rgb(235, 27, 40)
+}
+
+.details-container__closed-icon {
+    font-size: 1.7em;
+    opacity: .5;
+}
+
+.details-container__hr {
     margin-top: 3%;
     width: 100%;
     color: #0000;
 }
 
-.requestTitle {
+.details-container__title {
     width: 100%;
 }
 
-.requestName {
+.details-container__request-name {
     width: 65%;
     color: rgb(124, 124, 124)
 }
 
-.date {
+.details-container__date {
     width: 35%;
     color: rgb(124, 124, 124)
 }
 
-.detailsMessage {
+.details-container__message {
     text-align: justify;
     padding-top: 3%
 }
 
-.answer-request-button {
+.details-container__answer-request {
     height: 2.5em;
     background-color: rgb(235, 27, 40);
     color: #fff;

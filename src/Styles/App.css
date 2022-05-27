@@ -1,0 +1,70 @@
+.app {
+    background-color: #f7f7f9;
+}
+
+.app-container {
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.app-container__subnav-container {
+    display: flex;
+}
+
+.subnav-container__title {
+    width: 75%;
+    color: rgb(235, 27, 40);
+    font-size: 1.3em;
+}
+
+.subnav-container__buttons-right {
+    display: flex;
+    width: 25%;
+}
+
+.subnav-container__buttons-right__download-button {
+    font-size: 2em;
+    color: rgb(235, 27, 40);
+    padding-right: 1%;
+    margin-left: auto;
+}
+
+.subnav-container__buttons-right__add-request-button {
+    height: 2.5em;
+    background-color: rgb(235, 27, 40);
+    color: #fff;
+    width: 40%;
+    border-radius: 50px;
+    border: none;
+    margin-left: 10%;
+}
+
+.app-components {
+    display: flex;
+    margin-top: 2%;
+}
+
+.nav-container {
+    display: flex;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.app-components__filter-component {
+    width: 25%;
+}
+
+.app-components__table-component-large {
+    width: 75%;
+}
+
+.app-components__table-component-small {
+    width: 45%;
+}
+
+.app-components__table-component-details {
+    width: 30%;
+    padding-left: 2%;
+}

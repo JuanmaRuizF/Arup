@@ -1,0 +1,31 @@
+.navbar-component {
+    background-color: white;
+}
+
+.navbar-component-container {
+    display: flex;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.navbar-component-container__dhub-field {
+    width: 25%;
+    color: rgb(235, 27, 40);
+    font-size: 1.5em;
+}
+
+.navbar-component-container__menu-options {
+    display: flex;
+    width: 30%;
+}
+
+.navbar-component-container__menu-options-item {
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+.navbar-component-container__arup-icon {
+    max-height: 1.5em;
+    margin-left: auto;
+}
